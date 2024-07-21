@@ -19,5 +19,5 @@
     "playwright": "^1.45.2",
     "playwright-core": "^1.45.2"
   },
-  "description": ""
+  "description": "Web automation project using playwright"
 }
