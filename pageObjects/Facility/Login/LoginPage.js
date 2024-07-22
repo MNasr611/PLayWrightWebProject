@@ -2,26 +2,24 @@
 * @author Mohamed Nasr
 /******************************************************** */
 
-// import { Commons } from '../../Commons';
-let loginPage;
 class LoginPage {
 
     constructor(page) {
-        loginPage = page;
-        this.textSearch = loginPage.locator('(//textarea)[1]');
-        this.googleSearch = loginPage.locator("(//input[contains(@value,'بحث')])[2]");
-        this.txtBox_username = loginPage.locator('//input[@id="Email"]');
-        this.txtBox_password = loginPage.locator('//input[@name="Password"]');
-        this.btn_Login = loginPage.locator('//input[@id="login-btn-t"]');
+        this.loginPage = page;
+        this.textSearch = this.loginPage.locator('(//textarea)[1]');
+        this.googleSearch = this.loginPage.locator("(//input[contains(@value,'بحث')])[2]");
+        this.txtBox_username = this.loginPage.locator('//input[@id="Email"]');
+        this.txtBox_password = this.loginPage.locator('//input[@name="Password"]');
+        this.btn_Login = this.loginPage.locator('//input[@id="login-btn-t"]');
     }//constructor
 
 
     async searchForSomething(searchData) {
         await this.textSearch.fill(searchData);
         await this.googleSearch.click();
-        await loginPage.waitForLoadState('networkidle');
+        await this.loginPage.waitForLoadState('networkidle');
     }//waitForLoadState()
-    
+
 
     async loginToApplication(username, password) {
         console.log('Filling ' + username + ' in Username textBox');
@@ -35,4 +33,4 @@ class LoginPage {
 
 }//class
 
-module.exports = { LoginPage }; 
+export default LoginPage;

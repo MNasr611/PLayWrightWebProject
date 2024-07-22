@@ -1,8 +1,6 @@
-
-
-import { test } from '@playwright/test';
-const Commons = require('../../../pageObjects/Commons');
-let commons = new Commons();
+import test from '@playwright/test';
+import Commons from '../../../pageObjects/Commons.js';
+const commons = new Commons();
 
 
 

@@ -1,27 +1,23 @@
-import { LoginPage } from './Facility/Login/LoginPage';
-
-let pomPage
-let loginPage;
+import LoginPage from './Facility/Login/LoginPage';
 
 
 
 
-
-class POM_Manager  {
+class POM_Manager {
     constructor(page) {
-        pomPage = page;
-        loginPage = new LoginPage(pomPage);
+        this.page = page;
+        this.loginPage = new LoginPage(this.page);
 
     }//constructor
 
 
 
     getLoginPage() {
-        return loginPage;
+        return this.loginPage;
     }
 
 
 
 }//class
 
-module.exports = { POM_Manager }; 
+export default POM_Manager;

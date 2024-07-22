@@ -1,32 +1,29 @@
 
 
 
-const yaml = require('js-yaml');
-const fs = require('fs')
+import yaml from 'js-yaml';
+import fs from 'fs';
 const { chromium } = require('playwright');
 
-let page;
-let url;
-let config;
-let testdata;
+
 
 
 class Hooks {
 
 
     constructor() {
-        page = null;
-        url = null;
-        config = null;
-        testdata = null;
+        this.page = null;
+        this.url = null;
+        this.config = null;
+        this.testdata = null;
     }//constructor
 
 
     async initialize() {
-        page = await this.initializePage();
-        config = await this.readYamlFile('./Configs/Config/config.yml');
-        url = await this.readYamlFile('./Configs/URLs/url.yml') ;
-        testdata = await JSON.parse(JSON.stringify(require('../TestData/testdata.json')));
+        this.page = await this.initializePage();
+        this.config = await this.readYamlFile('./Configs/Config/config.yml');
+        this.url = await this.readYamlFile('./Configs/URLs/url.yml') ;
+        this.testdata = await JSON.parse(JSON.stringify(require('../TestData/testdata.json')));
     }
 
 
@@ -63,19 +60,19 @@ class Hooks {
 
 
     getPage() {
-        return page;
+        return this.page;
     }
 
     getURLS() {
-        return url;
+        return this.url;
     }
 
     getConfig() {
-        return config;
+        return this.config;
     }
 
     getTestData() {
-        return testdata;
+        return this.testdata;
     }
 
 
@@ -83,4 +80,4 @@ class Hooks {
 
 
 }
-module.exports = { Hooks }; 
+export default Hooks ;

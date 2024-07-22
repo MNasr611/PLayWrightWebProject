@@ -1,64 +1,56 @@
-import { POM_Manager } from '../pageObjects/POM_MANAGER';
-import { Hooks } from '../Hooks/Hooks';
-import { expect } from 'playwright/test';
+import POM_Manager from '../pageObjects/POM_MANAGER';
+import Hooks from '../Hooks/Hooks';
+import expect from 'playwright/test';
 
 
 
-let pomManager;
-let hooks;
-let globePage;
-let url;
-let config;
-let testdata;
-let expectAnnotation = expect;
 
 
 class Commons {
 
     constructor() {
-        pomManager = null;
-        hooks = null;
-        globePage = null;
-        url = null;
-        config = null;
-        testdata = null;
-        hooks = new Hooks();
+        this.pomManager = null;
+        this.globePage = null;
+        this.url = null;
+        this.config = null;
+        this.testdata = null;
+        this.hooks = new Hooks();
+
+
     }//constructor
 
 
 
 
     async initialize() {
-        await hooks.initialize(); // Ensure page is initialized
-        globePage = hooks.getPage();
-        pomManager = new POM_Manager(globePage);
-        url = hooks.getURLS();
-        config = hooks.getConfig();
-        testdata = hooks.getTestData();
+        await this.hooks.initialize(); // Ensure page is initialized
+        this.globePage = this.hooks.getPage();
+        this.pomManager = new POM_Manager(this.globePage);
+        this.url = this.hooks.getURLS();
+        this.config = this.hooks.getConfig();
+        this.testdata = this.hooks.getTestData();
     }
 
 
     getPOMManager() {
-        return pomManager;
+        return this.pomManager;
     }
     getPage() {
-        return globePage;
+        return this.globePage;
     }
     getURLS() {
-        return url;
+        return this.url;
     }
 
     getConfig() {
-        return config;
+        return this.config;
     }
 
     getTestData() {
-        return testdata;
+        return this.testdata;
     }
 
-    getExpect() {
-        return expectAnnotation;
-    }
+
 
     async goToGoogle() {
         await this.getPage().goto(this.getURLS().Google);
@@ -73,7 +65,6 @@ class Commons {
     }//clickOnElement()
 
 
-
 }
 
-module.exports = Commons;
+export default Commons;
