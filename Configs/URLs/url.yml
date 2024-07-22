@@ -1,2 +1,5 @@
 Google: "https://www.google.com"
 YouTube: "https://www.youtube.com"
+BASE_URL: "https://saber-ocelotwebapp.aks.thiqah.sa"
+FacilityLogin: "https://saber-ocelotwebapp.aks.thiqah.sa/Account/Login"
+FacilityHome : "https://saber-ocelotwebapp.aks.thiqah.sa/ContactOfficer"

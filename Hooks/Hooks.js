@@ -45,7 +45,10 @@ class Hooks {
         let browser;
         try {
             browser = await chromium.launch();
-            const context = await browser.newContext();
+            const context = await browser.newContext({
+                headless: false,
+                args: ['--start-maximized'],
+            });
             const newPage = await context.newPage();
             return newPage;
         } catch (error) {

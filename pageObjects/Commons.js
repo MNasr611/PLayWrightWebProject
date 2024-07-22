@@ -1,22 +1,22 @@
 import POM_Manager from '../pageObjects/POM_MANAGER';
 import Hooks from '../Hooks/Hooks';
-import expect from 'playwright/test';
+import { expect } from '@playwright/test';
+import { test } from '@playwright/test';
 
 
 
 
 
 class Commons {
-
     constructor() {
+        this.expect = expect;
+        this.test = test;
         this.pomManager = null;
         this.globePage = null;
         this.url = null;
         this.config = null;
         this.testdata = null;
         this.hooks = new Hooks();
-
-
     }//constructor
 
 
@@ -65,6 +65,12 @@ class Commons {
     }//clickOnElement()
 
 
-}
+    async goToFacilityLoginPage() {
+        await this.getPage().goto(this.getURLS().FacilityLogin);
+        await this.getPage().waitForLoadState('networkidle');
+    }//clickOnElement()
 
-export default Commons;
+
+}
+const commons = new Commons();
+export default commons;
