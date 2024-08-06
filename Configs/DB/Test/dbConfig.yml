@@ -1,0 +1,5 @@
+DBHost: 172.25.74.12
+DBName: Saber_Test
+DBUser: sure_saber
+DBPass: sure_saber@123
+DBPort: 1433

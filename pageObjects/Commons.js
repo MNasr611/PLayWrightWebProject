@@ -16,6 +16,7 @@ class Commons {
         this.url = null;
         this.config = null;
         this.testdata = null;
+        this.dbConnection = null;
         this.hooks = new Hooks();
     }//constructor
 
@@ -29,6 +30,8 @@ class Commons {
         this.url = this.hooks.getURLS();
         this.config = this.hooks.getConfig();
         this.testdata = this.hooks.getTestData();
+        this.dbConnection = this.hooks.getConnection();
+        
     }
 
 
@@ -50,7 +53,9 @@ class Commons {
         return this.testdata;
     }
 
-
+    getConnection() {   
+        return this.dbConnection;
+    }
 
     async goToGoogle() {
         await this.getPage().goto(this.getURLS().Google);
@@ -66,10 +71,16 @@ class Commons {
 
 
     async goToFacilityLoginPage() {
+        
         await this.getPage().goto(this.getURLS().FacilityLogin);
         await this.getPage().waitForLoadState('networkidle');
     }//clickOnElement()
 
+
+    async goToGlobalCoo() {
+        await this.getPage().goto(this.getURLS().GLOBALCOOCI);
+        await this.getPage().waitForLoadState('networkidle');
+    }//clickOnElement()
 
 }
 const commons = new Commons();

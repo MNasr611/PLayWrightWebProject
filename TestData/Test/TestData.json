@@ -1,0 +1,19 @@
+{
+    "PWD": {
+        "valid": "Aa@12345"
+    },
+    "PLASTIC": {
+        "JEEM": {
+            "email": "yousef-qatati@gulfhygienic.com.sa",
+            "hscode": "630533000000",
+            "certificate-number": "20240560972",
+            "expiry-date": "04/02/2025"
+        },
+        "MANEH": {
+            "email": "Plastic",
+            "hscode": "#FF0000",
+            "certificate-number": 1.0,
+            "expiry-date": 0.5
+        }
+    }
+}

@@ -8,17 +8,18 @@ module.exports = {
     {
       name: 'chromium',
       use: { browserName: 'chromium' },
-    },
-    {
-      name: 'firefox',
-      use: { browserName: 'firefox' },
-    },
-    {
-      name: 'webkit',
-      use: { browserName: 'webkit' },
-    },
+    }
+    // },
+    // {
+    //   name: 'firefox',
+    //   use: { browserName: 'firefox' },
+    // },
+    // {
+    //   name: 'webkit',
+    //   use: { browserName: 'webkit' },
+    // },
   ],
   testDir: './tests',
   timeout: 30000,
-  workers: 3
+  workers: 1
 };

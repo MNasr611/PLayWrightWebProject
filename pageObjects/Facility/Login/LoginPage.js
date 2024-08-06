@@ -1,9 +1,9 @@
 /**  
 * @author Mohamed Nasr
 /******************************************************** */
-const confirmatioCodeValue = '0000';
 import commons from '../../../pageObjects/Commons';
 import HEADERS from '../../../Configs/ENUMS/HEADERS';
+const confirmatioCodeValue = '0000';
 
 class LoginPage {
     constructor(page) {
