@@ -1,5 +1,7 @@
 import POM_Manager from '../pageObjects/POM_MANAGER';
 import Hooks from '../Hooks/Hooks';
+import DbConnection from '../DbConnection/DbConnection';
+
 import { expect } from '@playwright/test';
 import { test } from '@playwright/test';
 
@@ -16,8 +18,9 @@ class Commons {
         this.url = null;
         this.config = null;
         this.testdata = null;
-        this.dbConnection = null;
+        this.dbConfig = null;
         this.hooks = new Hooks();
+        this.databaseConnection = new DbConnection();
     }//constructor
 
 
@@ -28,10 +31,10 @@ class Commons {
         this.globePage = this.hooks.getPage();
         this.pomManager = new POM_Manager(this.globePage);
         this.url = this.hooks.getURLS();
-        this.config = this.hooks.getConfig();
         this.testdata = this.hooks.getTestData();
-        this.dbConnection = this.hooks.getConnection();
-        
+        this.config = this.hooks.getConfig();
+        this.dbConfig = this.hooks.getDbConfig();
+        this.databaseConnection = await this.databaseConnection.connectToDB(this.dbConfig);
     }
 
 
@@ -53,8 +56,8 @@ class Commons {
         return this.testdata;
     }
 
-    getConnection() {   
-        return this.dbConnection;
+    getConnection() {
+        return this.databaseConnection;
     }
 
     async goToGoogle() {
@@ -71,7 +74,7 @@ class Commons {
 
 
     async goToFacilityLoginPage() {
-        
+
         await this.getPage().goto(this.getURLS().FacilityLogin);
         await this.getPage().waitForLoadState('networkidle');
     }//clickOnElement()

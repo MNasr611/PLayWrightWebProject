@@ -3,7 +3,6 @@
 
 import yaml from 'js-yaml';
 import fs from 'fs';
-const sql = require('mssql');
 const { chromium } = require('playwright');
 
 
@@ -18,7 +17,6 @@ class Hooks {
         this.config = null;
         this.testdata = null;
         this.dbConfig = null;
-        this.connection = null;
     }//constructor
 
 
@@ -35,43 +33,16 @@ class Hooks {
             this.dbConfig = await this.readYamlFile('./Configs/DB/Pre/dbConfig.yml');
             this.testdata = await JSON.parse(JSON.stringify(require('../TestData/Pre/testdata.json')));
         }
-        this.connection = await this.connectToDB();
     }
 
 
-    async connectToDB() {
-        //npm install mssql
-        const config = {
 
-            server: this.getDBConfig().DBHost,    // Your database host
-            user: this.getDBConfig().DBUser,         // Your database username
-            password: this.getDBConfig().DBPass, // Your database password
-            database: this.getDBConfig().DBName, // Your database name
-            port: this.getDBConfig().DBPort,
-
-            options: {
-                encrypt: true, // Use encryption if you're connecting to Azure SQL Database
-                trustServerCertificate: true // Set to true for self-signed certs in development
-            },
-        };
-    
-        try {
-            const connection = await sql.connect(config);
-            return connection;
-        } catch (err) {
-            console.error('Error connecting to the database:', err);
-            throw err;
-        }
-
-    }
 
 
     readYamlFile(filePath) {
         try {
             const fileContents = fs.readFileSync(filePath, 'utf8');
-            console.log(fileContents);
             const data = yaml.load(fileContents);
-            console.log(data);
             return data;
         } catch (e) {
             console.log(e);
@@ -116,11 +87,8 @@ class Hooks {
         return this.testdata;
     }
 
-    getDBConfig() {
+    getDbConfig() {
         return this.dbConfig;
-    }
-    getConnection() {
-        return this.connection;
     }
 
 
